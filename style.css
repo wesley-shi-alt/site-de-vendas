@@ -6,15 +6,24 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+:root {
+    --color-primary: #007bff; /* Azul */
+    --color-secondary: #ffc107; /* Amarelo */
+    --color-success: #28a745; /* Verde */
+    --color-danger: #dc3545; /* Vermelho */
+    --color-background: #eef2f7;
+    --color-text: #333;
+}
+
 body {
-    background-color: #eef2f7; /* Fundo cinza claro */
-    color: #333;
+    background-color: var(--color-background);
+    color: var(--color-text);
     line-height: 1.6;
 }
 
 .container {
     width: 90%;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: auto;
     overflow: hidden;
     padding: 0 15px;
@@ -22,10 +31,13 @@ body {
 
 /* Header */
 header {
-    background: #007bff; /* Azul primário */
+    background: var(--color-primary);
     color: #fff;
     padding: 15px 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 header a {
@@ -50,116 +62,163 @@ header nav ul {
 
 header nav ul li {
     float: left;
-    margin-left: 25px;
+    margin-left: 30px;
 }
 
-/* Hero Section (Banner) */
+/* Hero Section */
 .hero {
     background: #fff;
     text-align: center;
-    padding: 60px 20px;
-    margin-top: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 80px 20px;
+    margin: 30px 0;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
 .hero h2 {
-    color: #007bff;
-    margin-bottom: 10px;
-    font-size: 2.5em;
+    color: var(--color-primary);
+    margin-bottom: 15px;
+    font-size: 3em;
 }
 
 .btn-oferta {
     display: inline-block;
-    background: #28a745; /* Verde para ofertas */
+    background: var(--color-success);
     color: #fff;
-    padding: 12px 30px;
+    padding: 15px 40px;
     text-decoration: none;
-    border-radius: 5px;
-    margin-top: 20px;
+    border-radius: 8px;
+    margin-top: 30px;
     font-weight: bold;
-    transition: background 0.3s;
+    text-transform: uppercase;
+    transition: background 0.3s, transform 0.3s;
 }
 
 .btn-oferta:hover {
-    background: #218838;
+    background: #1e7e34;
+    transform: translateY(-2px);
 }
 
 /* Grade de Produtos */
 .product-grid {
     padding: 40px 0;
-    text-align: center;
 }
 
 .product-grid h3 {
-    font-size: 2em;
-    color: #333;
-    margin-bottom: 30px;
+    text-align: center;
+    font-size: 2.5em;
+    color: var(--color-text);
+    margin-bottom: 40px;
+    border-bottom: 2px solid var(--color-secondary);
+    display: inline-block;
+    padding-bottom: 5px;
+    width: 100%;
 }
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* 4 colunas em telas grandes */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
 }
 
 /* Cartão de Produto */
 .product-card {
     background: #fff;
-    padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     position: relative;
     text-align: left;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Imagem do Produto */
+.product-image {
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f8f8;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+}
+
+/* Estilo do Placeholder (para produtos sem imagem) */
+.placeholder-image {
+    font-size: 3em;
+    color: #ccc;
+}
+
+.product-card > h4, .product-card > p, .product-card > .price-area, .product-card > .btn-comprar {
+    padding: 0 20px;
+}
+
+.product-card h4 {
+    color: var(--color-primary);
+    margin: 15px 0 5px;
+    font-size: 1.3em;
+}
+
+.product-card p {
+    font-size: 0.95em;
+    color: #666;
+    margin-bottom: 15px;
 }
 
 .tag-promo {
     position: absolute;
     top: 10px;
-    right: 10px;
-    background: #dc3545; /* Vermelho para promoção */
+    left: 0;
+    background: var(--color-danger);
     color: #fff;
-    padding: 5px 10px;
-    border-radius: 4px;
+    padding: 5px 15px 5px 10px;
     font-size: 0.8em;
     font-weight: bold;
-}
-
-.product-card h4 {
-    color: #007bff;
-    margin-bottom: 10px;
-    font-size: 1.4em;
+    clip-path: polygon(0 0, 100% 0, 90% 50%, 100% 100%, 0 100%);
 }
 
 .price-area {
-    margin: 15px 0;
+    margin: 10px 0 20px;
 }
 
 .price-antigo {
     text-decoration: line-through;
-    color: #6c757d;
+    color: #999;
     margin-right: 10px;
     font-size: 0.9em;
+    display: block;
 }
 
 .price-atual {
-    font-size: 1.6em;
-    color: #28a745; /* Verde para o preço principal */
+    font-size: 1.8em;
+    color: var(--color-success);
     font-weight: bold;
 }
 
 .btn-comprar {
-    display: block;
-    width: 100%;
-    background: #ffc107; /* Amarelo/Laranja para Ação (Comprar) */
-    color: #333;
+    background: var(--color-secondary);
+    color: var(--color-text);
     border: none;
-    padding: 10px 0;
-    border-radius: 5px;
+    padding: 12px 0;
+    border-radius: 0 0 8px 8px; /* Cantos arredondados só na parte de baixo */
     cursor: pointer;
     font-size: 1.1em;
     font-weight: bold;
+    text-transform: uppercase;
     transition: background 0.3s;
+    width: 100%;
+    margin-top: auto; /* Empurra para o fundo do cartão */
 }
 
 .btn-comprar:hover {
@@ -170,7 +229,7 @@ header nav ul li {
 footer {
     text-align: center;
     padding: 20px 0;
-    background: #343a40; /* Cinza escuro */
+    background: #343a40;
     color: #fff;
-    margin-top: 40px;
+    margin-top: 50px;
 }
